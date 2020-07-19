@@ -1,46 +1,20 @@
-from requests_html import HTMLSession
+from fastapi import FastAPI
+from scraper import scrapeData, getScrapedData
 
-session = HTMLSession()
-
-baseURL = 'https://thehackernews.com/search/label/'
-
-categories = ['data%20breach', 'Cyber%20Attack', 'Vulnerability', 'Malware']
+app = FastAPI()
 
 
-class CategoryScrape():
+@app.get("/")
+def get_data():
+    """ Get all scraped data as in json """
 
-    catURL = ''
-
-    r = ''
-
-    def __init__(self, catURL, category):
-
-        print(f'Scraping starting on Category : {category} \n')
-
-        print(' ')
-
-        self.catURL = catURL
-
-        self.r = session.get(self.catURL)
-
-    def scrapeArticle(self):
-
-        blog_posts = self.r.html.find('.body-post')
-
-        for blog in blog_posts:
-
-            storyLink = blog.find('.story-link', first=True).attrs['href']
-
-            storyTitle = blog.find('.home-title', first=True).text
-
-            print(storyTitle)
-            print(storyLink)
-
-            print("\n")
+    return getScrapedData()
 
 
-for category in categories:
+@app.post("/")
+def scrape_data():
+    """ On doing a post request to '/' you Activates scraping """
 
-    category = CategoryScrape(f'{baseURL}{category}', category)
+    scrapeData()
 
-    category.scrapeArticle()
+    return {"Status": "Scraping Started"}
