@@ -1,6 +1,6 @@
-# THN_scraper
+# THN_scraper_api
 
-> A simple python script that goes to all four category pages in thehackernews.com and grabs all the latest articles and will print the article's title and links to the terminal
+> A simple python script that goes to all four category pages in thehackernews.com and grabs all the latest articles and serves a json api for activating the scraping and to get all the scraped data.
 
 ---
 
@@ -8,11 +8,11 @@
 
 > Clone the repo
 
-`$ git clone https://github.com/VishnuDileesh/THN_scraper`
+`$ git clone https://github.com/VishnuDileesh/THN_scraper_api`
 
 > Change to the cloned repo
 
-`$ cd THN_scraper`
+`$ cd THN_scraper_api`
 
 >  Install the necessary packages
 
@@ -22,4 +22,4 @@
 
 `$ python3 main.py`
 
-![THN_scraper screenshot](screenshot.png)
+![THN_scraper_api screenshot](screenshot.png)
