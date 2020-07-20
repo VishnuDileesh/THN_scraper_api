@@ -1,20 +1,29 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, BackgroundTasks
 from scraper import scrapeData, getScrapedData
 
 app = FastAPI()
 
 
 @app.get("/")
-def get_data():
-    """ Get all scraped data as in json """
+async def index():
+    """ index route """
 
+    return {
+        "get-data": "visit /get-data to get scraped data",
+        "scrape-data": "visit /scrape-data to activate scraping"
+    }
+
+
+@app.get("/get-data")
+async def get_data():
+    """ Get all scraped data as in json by visiting /get-data """
     return getScrapedData()
 
 
-@app.post("/")
-def scrape_data():
-    """ On doing a post request to '/' you Activates scraping """
+@app.get("/scrape-data")
+async def scrape_data(background_tasks: BackgroundTasks):
+    """ On doing a get request to '/scrape-data' you Activates scraping """
 
-    scrapeData()
+    background_tasks.add_task(scrapeData)
 
-    return {"Status": "Scraping Started"}
+    return {"Status": "Activated Scraping"}

@@ -17,9 +17,9 @@ class CategoryScrape():
 
     def __init__(self, catURL, category):
 
-        print(f'Scraping starting on Category : {category} \n')
+        #print(f'Scraping starting on Category : {category} \n')
 
-        print(' ')
+        #print(' ')
 
         self.catURL = catURL
 
@@ -28,6 +28,8 @@ class CategoryScrape():
     def scrapeArticle(self):
 
         blog_posts = self.r.html.find('.body-post')
+
+        cat_data = f'{self.catURL}'
 
         for blog in blog_posts:
 
@@ -47,6 +49,8 @@ class CategoryScrape():
 
 
 def scrapeData():
+
+    datas = []
 
     for category in categories:
 
