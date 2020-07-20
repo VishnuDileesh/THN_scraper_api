@@ -20,6 +20,6 @@
 
 > Running the project
 
-`$ python3 main.py`
+`$ python3 run.py`
 
 ![THN_scraper_api screenshot](screenshot.png)
