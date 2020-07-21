@@ -6,7 +6,7 @@ baseURL = 'https://thehackernews.com/search/label/'
 
 categories = ['data%20breach', 'Cyber%20Attack', 'Vulnerability', 'Malware']
 
-datas = []
+data = {}
 
 
 class CategoryScrape():
@@ -15,11 +15,15 @@ class CategoryScrape():
 
     r = ''
 
+    category = ''
+
     def __init__(self, catURL, category):
 
         #print(f'Scraping starting on Category : {category} \n')
 
         #print(' ')
+
+        self.category = category
 
         self.catURL = catURL
 
@@ -27,9 +31,9 @@ class CategoryScrape():
 
     def scrapeArticle(self):
 
-        blog_posts = self.r.html.find('.body-post')
+        data[f'{self.category}'] = []
 
-        cat_data = f'{self.catURL}'
+        blog_posts = self.r.html.find('.body-post')
 
         for blog in blog_posts:
 
@@ -45,12 +49,15 @@ class CategoryScrape():
             scraped_data["title"] = storyTitle
             scraped_data["link"] = storyLink
 
-            datas.append(scraped_data)
+            data[f'{self.category}'].append({
+                'title': f'{storyTitle}',
+                'link': f'{storyLink}'
+            })
 
 
 def scrapeData():
 
-    datas = []
+    data = []
 
     for category in categories:
 
@@ -61,4 +68,4 @@ def scrapeData():
 
 def getScrapedData():
 
-    return datas
+    return data
