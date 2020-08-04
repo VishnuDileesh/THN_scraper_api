@@ -1,5 +1,5 @@
 from fastapi import FastAPI, BackgroundTasks
-from scraper import scrapeData, getScrapedData
+from scraper import scrapeData, getScrapedData, getCategories
 
 app = FastAPI()
 
@@ -19,6 +19,11 @@ async def index():
 async def get_data():
     """ On doing a get request to route '/api/v1/news' gives you all latest news articl's titles & links """
     return getScrapedData()
+
+@app.get("/api/v1/categories")
+async def get_categories():
+    """ On doing a get request to route '/api/v1/categories' gives you all the categories list """
+    return getCategories()
 
 
 @app.post("/api/v1/scrape-data")

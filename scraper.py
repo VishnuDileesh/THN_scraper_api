@@ -69,3 +69,16 @@ def scrapeData():
 def getScrapedData():
 
     return data
+
+def getCategories():
+
+    categoryNames = []
+
+    for category in categories:
+
+        category = category.replace("%20", " ")
+        categoryNames.append(category.capitalize())
+
+    return categoryNames
+
+
