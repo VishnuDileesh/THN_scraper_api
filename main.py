@@ -10,20 +10,20 @@ async def index():
     """ index route """
 
     return {
-        "get-data": "visit /get-data to get scraped data",
-        "scrape-data": "visit /scrape-data to activate scraping"
+        "get-data": "get request to route '/api/v1/news' to get latest news title & link",
+        "scrape-data": "post request to route '/api/v1/scrape-data' activates scraping"
     }
 
 
-@app.get("/api/v1/get-data")
+@app.get("/api/v1/news")
 async def get_data():
-    """ Get all scraped data as in json by visiting /get-data """
+    """ On doing a get request to route '/api/v1/news' gives you all latest news articl's titles & links """
     return getScrapedData()
 
 
 @app.post("/api/v1/scrape-data")
 async def scrape_data(background_tasks: BackgroundTasks):
-    """ On doing a get request to '/scrape-data' you Activates scraping """
+    """ On doing a post request to route '/api/v1/scrape-data' you Activates scraping """
 
     background_tasks.add_task(scrapeData)
 
