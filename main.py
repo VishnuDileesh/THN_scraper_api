@@ -1,5 +1,5 @@
 from fastapi import FastAPI, BackgroundTasks
-from scraper import scrapeData, getScrapedData, getCategories
+from scraper import scrapeData, getScrapedData, getCategories, getCategoryNews
 
 app = FastAPI()
 
@@ -24,6 +24,12 @@ async def get_data():
 async def get_categories():
     """ On doing a get request to route '/api/v1/categories' gives you all the categories list """
     return getCategories()
+
+@app.get("/api/v1/{category}/news")
+async def get_category_news(category):
+    """ On doing a get request to route '/api/v1/{category}/news' give you all latest articles titles & links for the partical category """
+    category = category.replace(" ", "%20")
+    return getCategoryNews(category)
 
 
 @app.post("/api/v1/scrape-data")

@@ -57,8 +57,6 @@ class CategoryScrape():
 
 def scrapeData():
 
-    data = []
-
     for category in categories:
 
         category = CategoryScrape(f'{baseURL}{category}', category)
@@ -81,4 +79,6 @@ def getCategories():
 
     return categoryNames
 
+def getCategoryNews(category):
 
+    return data[category]
