@@ -4,7 +4,8 @@ from scraper import scrapeData, getScrapedData
 app = FastAPI()
 
 
-@app.get("/")
+
+@app.get("/api/v1/")
 async def index():
     """ index route """
 
@@ -14,13 +15,13 @@ async def index():
     }
 
 
-@app.get("/get-data")
+@app.get("/api/v1/get-data")
 async def get_data():
     """ Get all scraped data as in json by visiting /get-data """
     return getScrapedData()
 
 
-@app.get("/scrape-data")
+@app.get("/api/v1/scrape-data")
 async def scrape_data(background_tasks: BackgroundTasks):
     """ On doing a get request to '/scrape-data' you Activates scraping """
 
