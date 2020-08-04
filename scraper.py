@@ -21,8 +21,6 @@ class CategoryScrape():
 
         #print(f'Scraping starting on Category : {category} \n')
 
-        #print(' ')
-
         self.category = category
 
         self.catURL = catURL
@@ -35,21 +33,14 @@ class CategoryScrape():
 
         blog_posts = self.r.html.find('.body-post')
 
-        for blog in blog_posts:
-
-            scraped_data = {}
+        for index, blog in enumerate(blog_posts):
 
             storyLink = blog.find('.story-link', first=True).attrs['href']
 
             storyTitle = blog.find('.home-title', first=True).text
 
-            #print(storyTitle)
-            #print(storyLink)
-
-            scraped_data["title"] = storyTitle
-            scraped_data["link"] = storyLink
-
             data[f'{self.category}'].append({
+                'id': f'{index + 1}',
                 'title': f'{storyTitle}',
                 'link': f'{storyLink}'
             })
@@ -68,6 +59,7 @@ def getScrapedData():
 
     return data
 
+
 def getCategories():
 
     categoryNames = []
@@ -79,6 +71,22 @@ def getCategories():
 
     return categoryNames
 
-def getCategoryNews(category):
+
+def getCategoryAllNews(category):
 
     return data[category]
+
+
+def getCategoryNews(category, id):
+
+    dataId = int(id) - 1
+
+    newsdata = data[category][dataId]
+
+    return newsdata
+
+
+# To Delete before pushing to git
+
+#scrapeData()
+#print(data)
