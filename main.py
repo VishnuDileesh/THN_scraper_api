@@ -21,7 +21,7 @@ async def get_data():
     return getScrapedData()
 
 
-@app.get("/api/v1/scrape-data")
+@app.post("/api/v1/scrape-data")
 async def scrape_data(background_tasks: BackgroundTasks):
     """ On doing a get request to '/scrape-data' you Activates scraping """
 
