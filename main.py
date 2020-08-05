@@ -51,7 +51,8 @@ async def get_category_all_news(category):
 async def get_category_news(category, id):
     """ On doing a get request to route '/api/v1/{category}/news/{id}' gives you a partical article from the category """
     category = category.replace(" ", "%20")
-    return getCategoryNews(category, id)
+
+    return table.get(doc_id=int(id))
 
 
 @app.post("/api/v1/scrape-data")
