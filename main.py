@@ -1,6 +1,6 @@
 from fastapi import FastAPI, BackgroundTasks
 from scraper import scrapeData
-from tinydb import TinyDB, Query
+from tinydb import TinyDB, Query, where
 
 # DB section
 
@@ -8,7 +8,7 @@ db = TinyDB('./db.json')
 
 table = db.table('thn')
 
-THN_Data = Query()
+THN_query = Query()
 
 # API section
 
@@ -43,7 +43,8 @@ async def get_categories():
 async def get_category_all_news(category):
     """ On doing a get request to route '/api/v1/{category}/news' gives you all the latest articles titles & links for the partical category """
     category = category.replace(" ", "%20")
-    return getCategoryAllNews(category)
+
+    return table.search(where('category') == category)
 
 
 @app.get("/api/v1/{category}/news/{id}")
