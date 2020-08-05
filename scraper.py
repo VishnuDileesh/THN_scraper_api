@@ -58,3 +58,16 @@ def scrapeData():
         category = CategoryScrape(f'{baseURL}{category}', category)
 
         category.scrapeArticle()
+
+
+def getCategories():
+
+    categoryNames = []
+
+    for category in categories:
+
+        category = category.replace("%20", " ")
+
+        categoryNames.append(category.capitalize())
+
+    return categoryNames

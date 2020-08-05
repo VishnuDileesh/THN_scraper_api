@@ -1,5 +1,5 @@
 from fastapi import FastAPI, BackgroundTasks
-from scraper import scrapeData
+from scraper import scrapeData, getCategories
 from tinydb import TinyDB, Query, where
 
 # DB section
