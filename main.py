@@ -1,5 +1,16 @@
 from fastapi import FastAPI, BackgroundTasks
 from scraper import scrapeData
+from tinydb import TinyDB, Query
+
+# DB section
+
+db = TinyDB('./db.json')
+
+table = db.table('thn')
+
+THN_Data = Query()
+
+# API section
 
 app = FastAPI()
 
@@ -19,7 +30,7 @@ async def index():
 @app.get("/api/v1/news")
 async def get_data():
     """ On doing a get request to route '/api/v1/news' gives you all latest news articl's titles & links """
-    return getScrapedData()
+    return table.all()
 
 
 @app.get("/api/v1/categories")
