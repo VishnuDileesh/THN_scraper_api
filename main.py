@@ -1,5 +1,5 @@
 from fastapi import FastAPI, BackgroundTasks
-from scraper import scrapeData, getScrapedData, getCategories, getCategoryAllNews, getCategoryNews
+from scraper import scrapeData
 
 app = FastAPI()
 
