@@ -15,15 +15,13 @@ THN_query = Query()
 app = FastAPI()
 
 
-@app.get("/api/v1/")
+@app.get("/")
 async def index():
     """ index route """
 
     return {
-        "get-data":
-        "get request to route '/api/v1/news' to get latest news title & link",
-        "scrape-data":
-        "post request to route '/api/v1/scrape-data' activates scraping"
+        "docs":
+        "go to route '/docs' to see the API documentation"
     }
 
 

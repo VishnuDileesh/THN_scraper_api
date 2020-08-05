@@ -4,6 +4,19 @@
 
 ---
 
+## Accessing the API
+
+> https://thn-scraper.herokuapp.com/api/v1/
+
+* https://thn-scraper.herokuapp.com/api/v1/news
+
+* https://thn-scraper.herokuapp.com/api/v1/category
+
+* https://thn-scraper.herokuapp.com/api/v1/{category}/news
+
+* https://thn-scraper.herokuapp.com/api/v1/{category}/news/{id}
+
+
 ## Usage
 
 > Clone the repo
