@@ -6,7 +6,7 @@
 
 ## Accessing the API
 
-> https://thn-scraper.herokuapp.com/api/v1/
+> https://thn-scraper.herokuapp.com/
 
 * https://thn-scraper.herokuapp.com/api/v1/news
 
