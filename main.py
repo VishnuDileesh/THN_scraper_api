@@ -15,12 +15,12 @@ THN_query = Query()
 
 app = FastAPI()
 
-origins = ["http://localhost:4200"]
+origins = ['*']
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
-    allow_methods=['GET'],
+    allow_methods=['*'],
     allow_headers=['*'],
 )
 
