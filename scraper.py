@@ -87,6 +87,3 @@ def getCategories():
         categoryNames.append(category.capitalize())
 
     return categoryNames
-
-
-scrapeData()
