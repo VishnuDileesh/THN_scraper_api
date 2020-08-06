@@ -19,10 +19,7 @@ app = FastAPI()
 async def index():
     """ index route """
 
-    return {
-        "docs":
-        "go to route '/docs' to see the API documentation"
-    }
+    return {"docs": "go to route '/docs' to see the API documentation"}
 
 
 @app.get("/api/v1/news")
