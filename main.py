@@ -24,7 +24,7 @@ async def index():
 
 @app.get("/api/v1/news")
 async def get_data():
-    """ On doing a get request to route '/api/v1/news' gives you all latest news articl's titles & links """
+    """ On doing a get request to route '/api/v1/news' gives you all latest news article's titles, links & summary """
     return table.all()
 
 
@@ -42,9 +42,9 @@ async def get_category_all_news(category):
     return table.search(where('category') == category)
 
 
-@app.get("/api/v1/{category}/news/{id}")
-async def get_category_news(category, id):
-    """ On doing a get request to route '/api/v1/{category}/news/{id}' gives you a partical article from the category """
+@app.get("/api/v1/news/{id}")
+async def get_category_news(id):
+    """ On doing a get request to route '/api/v1//news/{id}' gives you a partical article from the category """
     category = category.replace(" ", "%20")
 
     return table.get(doc_id=int(id))
