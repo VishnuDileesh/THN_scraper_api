@@ -1,4 +1,6 @@
+import nltk
 from requests_html import HTMLSession
+from newspaper import Article
 from tinydb import TinyDB
 
 db = TinyDB('./db.json')
@@ -10,6 +12,8 @@ session = HTMLSession()
 baseURL = 'https://thehackernews.com/search/label/'
 
 categories = ['data%20breach', 'Cyber%20Attack', 'Vulnerability', 'Malware']
+
+nltk.download('punkt')
 
 
 class CategoryScrape():
@@ -46,7 +50,19 @@ class CategoryScrape():
                 'category': f'{self.category}',
             }
 
-            table.insert(new_data)
+            id = table.insert(new_data)
+
+            article = Article(f'{storyLink}')
+
+            article.download()
+
+            article.parse()
+
+            article.nlp()
+
+            summary = article.summary
+
+            table.update({'summary': f'{summary}'}, doc_ids=[id])
 
 
 def scrapeData():
@@ -71,3 +87,6 @@ def getCategories():
         categoryNames.append(category.capitalize())
 
     return categoryNames
+
+
+scrapeData()

@@ -28,3 +28,5 @@ uvloop==0.14.0
 w3lib==1.22.0
 websockets==8.1
 tinydb
+newspaper3k
+nltk
