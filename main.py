@@ -45,7 +45,6 @@ async def get_category_all_news(category):
 @app.get("/api/v1/news/{id}")
 async def get_category_news(id):
     """ On doing a get request to route '/api/v1//news/{id}' gives you a partical article from the category """
-    category = category.replace(" ", "%20")
 
     return table.get(doc_id=int(id))
 
