@@ -14,7 +14,7 @@
 
 * https://thn-scraper.herokuapp.com/api/v1/{category}/news
 
-* https://thn-scraper.herokuapp.com/api/v1/{category}/news/{id}
+* https://thn-scraper.herokuapp.com/api/v1/news/{id}
 
 
 ## Usage
