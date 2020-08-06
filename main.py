@@ -1,4 +1,5 @@
 from fastapi import FastAPI, BackgroundTasks
+from fastapi.middleware.cors import CORSMiddleware
 from scraper import scrapeData, getCategories
 from tinydb import TinyDB, Query, where
 
@@ -13,6 +14,15 @@ THN_query = Query()
 # API section
 
 app = FastAPI()
+
+origins = ["http://localhost:4200"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_methods=['GET'],
+    allow_headers=['*'],
+)
 
 
 @app.get("/")
