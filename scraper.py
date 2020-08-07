@@ -11,7 +11,19 @@ session = HTMLSession()
 
 baseURL = 'https://thehackernews.com/search/label/'
 
-categories = ['data%20breach', 'Cyber%20Attack', 'Vulnerability', 'Malware']
+categories = [{
+    'name': 'Data Breach',
+    'slug': 'data%20breach'
+}, {
+    'name': 'Cyber Attack',
+    'slug': 'Cyber%20Attack'
+}, {
+    'name': 'Vulnerability',
+    'slug': 'Vulnerability'
+}, {
+    'name': 'Malware',
+    'slug': 'Malware'
+}]
 
 nltk.download('punkt')
 
@@ -22,13 +34,17 @@ class CategoryScrape():
 
     r = ''
 
-    category = ''
+    categoryname = ''
 
-    def __init__(self, catURL, category):
+    categoryslug = ''
+
+    def __init__(self, catURL, categoryName, categorySlug):
 
         # print(f'Scraping starting on Category : {category} \n')
 
-        self.category = category
+        self.categoryname = categoryName
+
+        self.categoryslug = categorySlug
 
         self.catURL = catURL
 
@@ -47,7 +63,8 @@ class CategoryScrape():
             new_data = {
                 'title': f'{storyTitle}',
                 'link': f'{storyLink}',
-                'category': f'{self.category}',
+                'categoryname': f'{self.categoryname}',
+                'categoryslug': f'{self.categoryslug}',
             }
 
             id = table.insert(new_data)
@@ -71,19 +88,15 @@ def scrapeData():
 
     for category in categories:
 
-        category = CategoryScrape(f'{baseURL}{category}', category)
+        categorySlug = category['slug']
+        categoryName = category['name']
+
+        category = CategoryScrape(f"{baseURL}{categorySlug}", categoryName,
+                                  categorySlug)
 
         category.scrapeArticle()
 
 
 def getCategories():
 
-    categoryNames = []
-
-    for category in categories:
-
-        category = category.replace("%20", " ")
-
-        categoryNames.append(category.capitalize())
-
-    return categoryNames
+    return [category for category in categories]

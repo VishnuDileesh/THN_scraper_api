@@ -47,9 +47,8 @@ async def get_categories():
 @app.get("/api/v1/{category}/news")
 async def get_category_all_news(category):
     """ On doing a get request to route '/api/v1/{category}/news' gives you all the latest articles titles & links for the partical category """
-    category = category.replace(" ", "%20")
 
-    return table.search(where('category') == category)
+    return table.search(where('categoryslug') == category)
 
 
 @app.get("/api/v1/news/{id}")
