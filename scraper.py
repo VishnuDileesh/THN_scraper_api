@@ -79,7 +79,11 @@ class CategoryScrape():
 
             summary = article.summary
 
-            table.update({'summary': f'{summary}'}, doc_ids=[id])
+            table.update({
+                'summary': f'{summary}',
+                'newsid': f'{id}'
+            },
+                         doc_ids=[id])
 
 
 def scrapeData():
