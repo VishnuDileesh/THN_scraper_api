@@ -12,7 +12,7 @@ httptools==0.1.1
 idna==2.10
 lxml==4.5.2
 parse==1.15.0
-pydantic==1.6.1
+pydantic>=1.6.2
 pyee==7.0.2
 pyppeteer==0.2.2
 pyquery==1.4.1
